@@ -1,0 +1,27 @@
+<div class="row justify-content-between mb-3">
+  <div class="col-1">
+  </div>
+  <div class="col-1">
+    <a class="btn btn-info" [routerLink]="['/path']"><fa-icon [icon]="faPlus"></fa-icon></a>
+  </div>
+</div>
+<table class="table table-hover animated fadeIn">
+  <thead>
+    <tr>
+      <th class="cursor-pointer" (click)="sortEvent(column.code)" *ngFor="let column of columns">
+        {{ column.title }} <fa-icon [icon]="faSort" [ngClass]="{'display-no': columnSorted != column.code}" *ngIf="faSort != undefined"></fa-icon>
+      </th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of data">
+      <td *ngFor="let column of columns">{{ item[column.code] }}</td>
+      <td>
+        <fa-icon [icon]="faPen" class="text-success mr-3 cursor-pointer" (click)="edit(item.id)"></fa-icon>
+        <fa-icon [icon]="faTrash" class="text-danger cursor-pointer"></fa-icon>
+      </td>
+    </tr>
+  </tbody>
+</table>
+{{textSearch}}
