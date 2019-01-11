@@ -12,6 +12,8 @@ export class NavbarComponent implements OnInit, OnDestroy {
   @Output() changeActive = new EventEmitter();
   title: string;
   showSearch: boolean = false;
+  showBackButton: boolean = false;
+  showSaveButton: boolean = false;
   active: boolean = false;
   subscriptions: any[] = [];
 
@@ -35,8 +37,20 @@ export class NavbarComponent implements OnInit, OnDestroy {
         .subscribe(data => this.title = data)
     );
 
-    this._eventService.getShowSearchEmitter()
-      .subscribe(data => this.showSearch = data);
+    this.subscriptions.push(
+      this._eventService.getShowSearchEmitter()
+        .subscribe(data => this.showSearch = data)
+    );
+
+    this.subscriptions.push(
+      this._eventService.getShowBackButtonEmitter()
+        .subscribe(data => this.showBackButton = data)
+    );
+
+    this.subscriptions.push(
+      this._eventService.getShowSaveButtonEmitter()
+        .subscribe(data => this.showSaveButton = data)
+    );
   }
   
   change() {
