@@ -13,7 +13,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
   title: string;
   showSearch: boolean = false;
   active: boolean = false;
-  subscription: any;
+  subscriptions: any[] = [];
 
   @HostListener('window:resize', ['$event'])
   onResize(event) {
@@ -29,24 +29,27 @@ export class NavbarComponent implements OnInit, OnDestroy {
   constructor(private _eventService: EventService) { }
 
   ngOnInit() {
-    this.subscription = this._eventService.getTitleEmitter()
-      .subscribe(data => this.title = data);
+    this.subscriptions.push(
+      this._eventService.getTitleEmitter()
+        .subscribe(data => this.title = data)
+    );
 
     this._eventService.getShowSearchEmitter()
       .subscribe(data => this.showSearch = data);
   }
-
-  ngOnDestroy() {
-    this.subscription.unsubscribe();
-  }
-
+  
   change() {
     this.active = !this.active;
     this.changeActive.emit(this.active);
   }
-
+  
   search(text) {
     this._eventService.emitSearchEvent(text.value);
   }
-
+  
+    ngOnDestroy() {
+      this.subscriptions.forEach((sub) => {
+        sub.unsubscribe();
+      })
+    }
 }

@@ -7,11 +7,12 @@ import { EventService } from 'src/app/services/event.service';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
+  title = 'Dashboard';
 
   constructor(private _eventService: EventService) { }
 
   ngOnInit() {
-    this._eventService.emitTitleEvent('Dashboard');
+    this._eventService.emitTitleEvent(this.title);
     this._eventService.emitShowSearchEvent(false);
   }
 

@@ -1,1 +1,1 @@
-<app-grid [columns]="columns" [data]="users"></app-grid>
+<app-grid [columns]="columns" [data]="users" (addEmitter)="add()" (editEmitter)="edit($event)" (removeEmitter)="remove($event)"></app-grid>

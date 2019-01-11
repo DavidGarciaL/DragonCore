@@ -17,6 +17,7 @@ import { GridComponent } from './components/shared/grid/grid.component';
 import { CommonService } from './services/common.service';
 import { UserService } from './services/user.service';
 import { EventService } from './services/event.service';
+import { UserDetailComponent } from './components/catalogs/users/user-detail/user-detail.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { EventService } from './services/event.service';
     NavbarComponent,
     UsersComponent,
     DashboardComponent,
-    GridComponent
+    GridComponent,
+    UserDetailComponent
   ],
   imports: [
     BrowserModule,
