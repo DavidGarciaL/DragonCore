@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, OnDestroy } from '@angular/core';
 import { UserService } from 'src/app/services/user.service';
 import { IUser } from 'src/app/models/iuser';
 import { Columns } from 'src/app/config/columns';
@@ -11,7 +11,7 @@ import { Observable } from 'rxjs';
   templateUrl: './users.component.html',
   styleUrls: ['./users.component.css']
 })
-export class UsersComponent implements OnInit {
+export class UsersComponent implements OnInit, OnDestroy {
   title = 'Users';
   users: IUser[] = [];
   columns: any;
@@ -39,5 +39,9 @@ export class UsersComponent implements OnInit {
 
   remove(id) {
     console.log(id);
+  }
+
+  ngOnDestroy() {
+    this._eventService.emitShowSearchEvent(false);
   }
 }

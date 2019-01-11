@@ -13,7 +13,6 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit() {
     this._eventService.emitTitleEvent(this.title);
-    this._eventService.emitShowSearchEvent(false);
   }
 
 }

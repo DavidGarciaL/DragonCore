@@ -1,5 +1,5 @@
 import { Component, OnInit, Output, EventEmitter, HostListener, OnChanges, Input, OnDestroy } from '@angular/core';
-import { faAlignJustify } from '@fortawesome/free-solid-svg-icons';
+import { faAlignJustify, faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import { EventService } from 'src/app/services/event.service';
 
 
@@ -25,6 +25,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
 
   // Icons
   faAlignJustify = faAlignJustify;
+  faArrowLeft = faArrowLeft;
 
   constructor(private _eventService: EventService) { }
 
