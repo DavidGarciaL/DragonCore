@@ -17,13 +17,18 @@ export class UsersComponent implements OnInit, OnDestroy {
   columns: any;
   subscriptions: any[] = [];
 
+  // Nav Config
+  navConfig = {
+    title: 'Users',
+    showSearch: true
+  }
+
   constructor(private _userService: UserService,
               private _eventService: EventService,
               private _router: Router) { }
   
   ngOnInit() {
-    this._eventService.emitTitleEvent(this.title);
-    this._eventService.emitShowSearchEvent(true);
+    this._eventService.emitNavConfig(this.navConfig);
     this._userService.get()
       .subscribe((data: any) => this.users = data);
     this.columns = Columns.user;
@@ -42,6 +47,6 @@ export class UsersComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this._eventService.emitShowSearchEvent(false);
+    this._eventService.emitNavConfig({ });
   }
 }

@@ -10,19 +10,23 @@ import { EventService } from 'src/app/services/event.service';
 })
 export class NavbarComponent implements OnInit, OnDestroy {
   @Output() changeActive = new EventEmitter();
-  title: string;
-  showSearch: boolean = false;
-  showBackButton: boolean = false;
-  showSaveButton: boolean = false;
   active: boolean = false;
   subscriptions: any[] = [];
-
+  
   @HostListener('window:resize', ['$event'])
   onResize(event) {
     if (event.target.innerWidth <= 768) {
       this.active = !this.active;
       this.changeActive.emit(this.active);  
     }
+  }
+  
+  // Config
+  navConfig = {
+    title: '',
+    showSearch: false,
+    showBackButton: false,
+    showSaveButton: false    
   }
 
   // Icons
@@ -33,23 +37,8 @@ export class NavbarComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.subscriptions.push(
-      this._eventService.getTitleEmitter()
-        .subscribe(data => this.title = data)
-    );
-
-    this.subscriptions.push(
-      this._eventService.getShowSearchEmitter()
-        .subscribe(data => this.showSearch = data)
-    );
-
-    this.subscriptions.push(
-      this._eventService.getShowBackButtonEmitter()
-        .subscribe(data => this.showBackButton = data)
-    );
-
-    this.subscriptions.push(
-      this._eventService.getShowSaveButtonEmitter()
-        .subscribe(data => this.showSaveButton = data)
+      this._eventService.getNavConfig()
+        .subscribe(navConfig => this.navConfig = navConfig)
     );
   }
   
@@ -60,6 +49,10 @@ export class NavbarComponent implements OnInit, OnDestroy {
   
   search(text) {
     this._eventService.emitSearchEvent(text.value);
+  }
+
+  back() {
+    this._eventService.emitBackButtonEvent();
   }
   
     ngOnDestroy() {

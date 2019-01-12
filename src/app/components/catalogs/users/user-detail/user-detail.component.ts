@@ -1,5 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
+import { faUser } from '@fortawesome/free-regular-svg-icons';
 import { EventService } from 'src/app/services/event.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-user-detail',
@@ -7,20 +9,34 @@ import { EventService } from 'src/app/services/event.service';
   styleUrls: ['./user-detail.component.css']
 })
 export class UserDetailComponent implements OnInit, OnDestroy {
-  title = "Agregar usuario";
-  
+  subscriptions = [];
+  // Nav Config
+  navConfig = {
+    title: "Agregar usuario",
+    showBackButton: true,
+    showSaveButton: true
+  }
 
-  constructor(private _eventService: EventService) { }
+  // Icons
+  faUser = faUser;
+
+  constructor(private _eventService: EventService,
+              private _router: Router) { }
 
   ngOnInit() {
-    this._eventService.emitTitleEvent(this.title);
-    this._eventService.emitShowBackButtonEvent(true);
-    this._eventService.emitShowSaveButtonEvent(true);
+    this._eventService.emitNavConfig(this.navConfig);
+    this.subscriptions.push(
+      this._eventService.getBackButtonEmitter()
+        .subscribe(() => this.back())
+    );
+  }
+
+  back() {
+    this._router.navigate(['users']);
   }
 
   ngOnDestroy() {
-    this._eventService.emitShowBackButtonEvent(false);
-    this._eventService.emitShowSaveButtonEvent(false);
+    this._eventService.emitNavConfig({ });
   }
 
 }
