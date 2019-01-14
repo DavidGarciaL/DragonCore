@@ -9,7 +9,8 @@ import { EventService } from 'src/app/services/event.service';
 export class DashboardComponent implements OnInit {
   // Nav Config
   navConfig = {
-    title: 'Dashboard'
+    title: 'Global Dashboard',
+    showSearch: true
   }
 
   constructor(private _eventService: EventService) { }

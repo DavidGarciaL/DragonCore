@@ -129,3 +129,101 @@ a:focus {
 .fadeIn {
     animation-name: fadeIn;
 }
+
+/* ---------------------------------------------------
+    COLORS
+----------------------------------------------------- */
+
+.text-orange {
+    color: #f96816;
+}
+
+.text-dark {
+    color: #181818;
+}
+
+.text-gray-dark {
+    color: #222222;
+}
+
+.text-red {
+    color: #be3030;
+}
+
+.bg-orange {
+    background: #f96816;
+}
+
+.bg-dark {
+    background: #181818;    
+}
+
+.bg-gray-dark {
+    background: #222222;
+}
+
+.bg-red {
+    background: #be3030;
+}
+
+.btn-orange {
+    background: #f96816;
+    color: #fff;
+    transition: .3s;
+}
+
+.btn-orange:hover {
+    color: #fff;
+    background: gray;
+}
+
+.btn-red {
+    background: #dc1f26;
+    color: #fff;
+    transition: 0.3s;
+}
+
+.btn-red:hover {
+    color: #fff;
+    background: gray;
+}
+
+.btn-yellow {
+    background: #f8b721;
+    color: #fff;
+    transition: 0.3s;
+}
+
+.btn-yellow:hover {
+    color: #fff;
+    background: gray;
+}
+
+textarea, input, input[type], button, button[type] {
+    transition: 0.3s;
+}
+
+button:focus, button[type]:focus {
+    border: none;
+    box-shadow: none;
+}
+
+textarea:focus, input:focus, input[type]:focus {
+    border-color: #f96816;
+    box-shadow: none;
+    /* box-shadow: 0 1px 1px rgba(229, 103, 23, 0.075)inset, 0 0 8px #f96816; */
+    outline: 0 none;
+}
+
+::-webkit-scrollbar{
+    width: 5px;
+    background-color: #F5F5F5;
+}
+::-webkit-scrollbar-track{
+    /* -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); */
+    background-color: #F5F5F5;
+}
+::-webkit-scrollbar-thumb{
+    background-color: #f96816; 
+    /* background-image: -webkit-linear-gradient(90deg,rgba(255, 255, 255, .2) 25%,transparent 25%,transparent 50%,rgba(255, 255, 255, .2) 50%,rgba(255, 255, 255, .2) 75%,transparent 75%,transparent) */
+}

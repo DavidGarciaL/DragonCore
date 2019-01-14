@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { faUser } from '@fortawesome/free-regular-svg-icons';
+import { faUser, faEnvelope } from '@fortawesome/free-regular-svg-icons';
 import { EventService } from 'src/app/services/event.service';
 import { Router } from '@angular/router';
 
@@ -19,6 +19,7 @@ export class UserDetailComponent implements OnInit, OnDestroy {
 
   // Icons
   faUser = faUser;
+  faEnvelope = faEnvelope;
 
   constructor(private _eventService: EventService,
               private _router: Router) { }
