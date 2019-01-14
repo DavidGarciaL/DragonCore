@@ -54,6 +54,10 @@ export class NavbarComponent implements OnInit, OnDestroy {
   back() {
     this._eventService.emitBackButtonEvent();
   }
+
+  save() {
+    this._eventService.emitSaveButtonEvent();
+  }
   
     ngOnDestroy() {
       this.subscriptions.forEach((sub) => {

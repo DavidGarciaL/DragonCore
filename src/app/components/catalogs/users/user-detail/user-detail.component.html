@@ -1,5 +1,5 @@
 <!-- <div class="container"> -->
-<form class="animated fadeIn">
+<form #submit class="animated fadeIn" novalidate [formGroup]="form" (ngSubmit)="onSubmit()">
   <div class="form-row">
     <div class="col-md-6">
       <div class="form-row">
@@ -11,16 +11,16 @@
         </div>
         <div class="col-12 mb-3">
           <label for="validationServer01">First name</label>
-          <input type="text" class="form-control is-invalid" id="validationServer01">
-          <!-- <div class="invalid-feedback">
-              Please provide a first name
-            </div> -->
+          <input id="first" type="text" class="form-control" [ngClass]="{'is-invalid': f.name.errors?.required && f.name.touched}" formControlName="name">
+          <div class="invalid-feedback">
+            Please provide a first name
+          </div>
         </div>
         <div class="col-12 mb-3">
           <label for="validationServer02">Last name</label>
-          <input type="text" class="form-control" id="validationServer02">
+          <input type="text" class="form-control" [ngClass]="{'is-invalid': f.lastName.errors?.required && f.lastName.touched}" formControlName="lastName">
           <div class="invalid-feedback">
-            Looks good!
+            Please provide a last name
           </div>
         </div>
       </div>
@@ -35,16 +35,16 @@
         </div>
         <div class="col-12 mb-3">
           <label for="validationServer03">Email</label>
-          <input type="email" class="form-control" id="validationServer03">
+          <input type="email" class="form-control" [ngClass]="{'is-invalid': (f.email.errors?.required || f.email.errors?.email) && f.email.touched}" formControlName="email">
           <div class="invalid-feedback">
-            Looks good!
+            Please provide a valid email
           </div>
         </div>
         <div class="col-12 mb-3">
           <label for="validationServer04">Phone</label>
-          <input type="text" class="form-control" id="validationServer04">
+          <input type="text" class="form-control" [ngClass]="{'is-invalid': f.phone.errors?.required && f.phone.touched}" formControlName="phone">
           <div class="invalid-feedback">
-            Looks good!
+            Please provide a phone number
           </div>
         </div>
       </div>
@@ -59,49 +59,55 @@
     </div>
     <div class="col-md-4 mb-3">
       <label for="validationServer05">Role</label>
-      <input type="text" class="form-control" id="validationServer05">
+      <select class="custom-select control" [ngClass]="{'is-invalid': f.role.errors?.required && f.role.touched}" formControlName="role">
+        <option *ngFor="let role of roles" [ngValue]="role.id">{{ role.name }}</option>
+      </select>
       <div class="invalid-feedback">
         Looks good!
       </div>
     </div>
     <div class="col-md-4 mb-3">
       <label for="validationServer06">Manager</label>
-      <input type="text" class="form-control" id="validationServer06">
+      <select class="custom-select control" [ngClass]="{'is-invalid': f.manager.errors?.required && f.manager.touched}" formControlName="manager">
+        <option *ngFor="let manager of managers" [ngValue]="manager.id">{{ manager.name }}</option>
+      </select>
       <div class="invalid-feedback">
         Looks good!
       </div>
     </div>
     <div class="col-md-4 mb-3">
       <label for="validationServer07">Team</label>
-      <input type="text" class="form-control" id="validationServer07">
+      <select class="custom-select control" [ngClass]="{'is-invalid': f.team.errors?.required && f.team.touched}" formControlName="team">
+        <option *ngFor="let team of teams" [ngValue]="team.id">{{ team.name }}</option>
+      </select>
       <div class="invalid-feedback">
         Looks good!
       </div>
     </div>
     <div class="col-md-4 mb-3">
       <label for="validationServer08">Employement date</label>
-      <input type="date" class="form-control" id="validationServer08">
+      <input type="date" class="form-control"  [ngClass]="{'is-invalid': f.employmentDate.errors?.required && f.employmentDate.touched}" formControlName="employmentDate">
       <div class="invalid-feedback">
         Looks good!
       </div>
     </div>
     <div class="col-md-4 mb-3">
       <label for="validationServer09">Password</label>
-      <input type="password" class="form-control" id="validationServer09">
+      <input type="password" class="form-control" [ngClass]="{'is-invalid': f.password.errors?.required && f.password.touched}" formControlName="password">
       <div class="invalid-feedback">
         Looks good!
       </div>
     </div>
     <div class="col-md-4 mb-3">
       <label for="validationServer10">Confirm password</label>
-      <input type="password" class="form-control" id="validationServer10">
+      <input type="password" class="form-control" [ngClass]="{'is-invalid': f.confirmPassword.errors?.required && f.confirmPassword.touched}" formControlName="confirmPassword">
       <div class="invalid-feedback">
         Looks good!
       </div>
     </div>
     <div class="col-md-4 mb-3">
       <div class="form-check mt-1">
-        <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+        <input class="form-check-input" type="checkbox" value="" id="defaultCheck1" formControlName="sendEmails">
         <label class="form-check-label" for="defaultCheck1">
           Allow emails
         </label>

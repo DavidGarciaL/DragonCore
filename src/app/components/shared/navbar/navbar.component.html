@@ -12,10 +12,10 @@
       <ul class="navbar-nav mr-auto">
       </ul>
       <form class="form-inline my-2 my-lg-0 animated fadeIn" *ngIf="navConfig.showSearch">
-        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" (keyup)="search(text)" #text>
+        <input class="form-control mr-sm-2 animated fadeIn" type="search" placeholder="Search" aria-label="Search" *ngIf="navConfig.showSearch" (keyup)="search(text)" #text>
       </form>
-    </div>
-    <button type="button" class="btn btn-red ml-2 animated fadeIn" *ngIf="navConfig.showBackButton" (click)="back()"><fa-icon [icon]="faArrowLeft"></fa-icon></button>
-    <button type="button" class="btn btn-yellow ml-2 animated fadeIn" *ngIf="navConfig.showSaveButton">Save</button>
+      </div>
+      <button type="button" class="btn btn-red ml-2 animated fadeIn" *ngIf="navConfig.showBackButton" (click)="back()"><fa-icon [icon]="faArrowLeft"></fa-icon></button>
+    <button type="button" class="btn btn-yellow ml-2 animated fadeIn" *ngIf="navConfig.showSaveButton" (click)="save()">Save</button>
   </nav>
 </div>

@@ -199,6 +199,10 @@ a:focus {
     background: gray;
 }
 
+/* ---------------------------------------------------
+    CONTROLS
+----------------------------------------------------- */
+
 textarea, input, input[type], button, button[type] {
     transition: 0.3s;
 }
@@ -208,12 +212,16 @@ button:focus, button[type]:focus {
     box-shadow: none;
 }
 
-textarea:focus, input:focus, input[type]:focus {
+textarea:focus, input:focus, input[type]:focus, .control:focus {
     border-color: #f96816;
     box-shadow: none;
     /* box-shadow: 0 1px 1px rgba(229, 103, 23, 0.075)inset, 0 0 8px #f96816; */
     outline: 0 none;
 }
+
+/* ---------------------------------------------------
+    SCROLLBAR
+----------------------------------------------------- */
 
 ::-webkit-scrollbar{
     width: 5px;
