@@ -9,6 +9,7 @@ import { IRole } from 'src/app/models/irole';
 import { UserService } from 'src/app/services/user.service';
 import { TeamService } from 'src/app/services/team.service';
 import { ITeam } from 'src/app/models/iteam';
+import { AlertService } from 'src/app/services/alert.service';
 
 
 @Component({
@@ -51,8 +52,9 @@ export class UserDetailComponent implements OnInit, OnDestroy {
               private _roleService: RoleService,
               private _teamService: TeamService,
               private _eventService: EventService,
+              private _formBuilder: FormBuilder,
               private _router: Router,
-              private _formBuilder: FormBuilder) { }
+              private _alertService: AlertService) { }
 
   ngOnInit() {
     this.form = this._formBuilder.group({
@@ -97,15 +99,17 @@ export class UserDetailComponent implements OnInit, OnDestroy {
   back() {
     this._router.navigate(['users']);
   }
-
+  
   onSubmit() {
     this.user = this.form.value;
     console.log(this.form);
     console.log(this.user);
     if (this.form.valid) {
-      console.log("Form valido");
-    } else {
-      console.log("Form invalido");
+      this._userService.create(this.user)
+      .subscribe((success: any) => {
+        this._router.navigate(['users']);
+        this._alertService.success("User successfully added");
+        });
     }
   }
 

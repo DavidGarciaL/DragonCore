@@ -13,4 +13,12 @@ export class CommonService {
   public get() {
     return this._http.get(`${API.URL.PROD}/${this.name}`);
   }
+
+  public getById(id) {
+    return this._http.get(`${API.URL.PROD}/${this.name}/${id}`)
+  }
+
+  public create(data) {
+    return this._http.post(`${API.URL.PROD}/${this.name}`, data);
+  }
 }

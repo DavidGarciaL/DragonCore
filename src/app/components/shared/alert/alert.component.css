@@ -1,0 +1,39 @@
+.alert {
+    display: block; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 10;
+    padding: 20px;
+    width: 350px;
+    min-height: 10%;
+    height: auto;
+    opacity: .8;
+    border-radius: 5px;
+    transition: .5s;
+}
+
+.hide {
+    left: 120%;
+    top: 85%;
+    transition: .5s;
+}
+
+.show {
+    left: 75%;
+    top: 85%;
+    transition: .5s;
+}
+
+/* The Close Button */
+.close {
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}

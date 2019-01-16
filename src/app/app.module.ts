@@ -15,6 +15,7 @@ import { UsersComponent } from './components/catalogs/users/users.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { GridComponent } from './components/shared/grid/grid.component';
 import { UserDetailComponent } from './components/catalogs/users/user-detail/user-detail.component';
+import { AlertComponent } from './components/shared/alert/alert.component';
 
 // Services
 import { CommonService } from './services/common.service';
@@ -22,6 +23,7 @@ import { UserService } from './services/user.service';
 import { EventService } from './services/event.service';
 import { RoleService } from './services/role.service';
 import { TeamService } from './services/team.service';
+import { AlertService } from './services/alert.service';
 
 @NgModule({
   declarations: [
@@ -32,7 +34,8 @@ import { TeamService } from './services/team.service';
     UsersComponent,
     DashboardComponent,
     GridComponent,
-    UserDetailComponent
+    UserDetailComponent,
+    AlertComponent
   ],
   imports: [
     BrowserModule,
@@ -42,7 +45,7 @@ import { TeamService } from './services/team.service';
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [CommonService, UserService, RoleService, TeamService, EventService],
+  providers: [CommonService, UserService, RoleService, TeamService, AlertService, EventService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
