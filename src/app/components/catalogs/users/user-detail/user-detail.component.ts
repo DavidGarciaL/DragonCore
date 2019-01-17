@@ -75,8 +75,8 @@ export class UserDetailComponent implements OnInit, OnDestroy {
       .subscribe((user: IUser) => {
           this.user = user;
           this.form.patchValue(this.user);
+          this.form.controls.employmentDate.setValue(new Date(this.user.employmentDate).toISOString().substring(0, 10));
           this.form.controls.confirmPassword.setValue(this.user.password);
-          this.form.updateValueAndValidity();
         })
     }
   }
