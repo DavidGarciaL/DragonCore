@@ -232,6 +232,6 @@ textarea:focus, input:focus, input[type]:focus, .control:focus {
     background-color: #F5F5F5;
 }
 ::-webkit-scrollbar-thumb{
-    background-color: #f96816; 
+    background-color: gray; 
     /* background-image: -webkit-linear-gradient(90deg,rgba(255, 255, 255, .2) 25%,transparent 25%,transparent 50%,rgba(255, 255, 255, .2) 50%,rgba(255, 255, 255, .2) 75%,transparent 75%,transparent) */
 }

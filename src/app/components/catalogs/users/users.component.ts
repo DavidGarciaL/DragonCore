@@ -42,6 +42,15 @@ export class UsersComponent implements OnInit, OnDestroy {
     this._userService.get()
       .subscribe((data: any) => {
         this.users = data;
+        let numItems = 2;
+            let page = 3;
+            let start = (page * numItems) - numItems;
+            let limit = page * numItems;
+            let flag: any[] = [];
+            for (let i = start; i < limit; i++) {
+              flag.push(this.users[i]);
+            }
+            this.users = flag;
         this._eventService.emitLoading(false);
       });
   }

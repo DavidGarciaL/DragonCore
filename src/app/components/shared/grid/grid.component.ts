@@ -17,6 +17,7 @@ export class GridComponent implements OnInit, OnDestroy {
   columnSorted: string = '';
   row: boolean;
   dataAux: any;
+  dataToShow: any;
   textSearch: string;
   subscriptions: any[] = [];
   flagFilter: boolean = false;
@@ -54,6 +55,7 @@ export class GridComponent implements OnInit, OnDestroy {
     );
   }
 
+     
   sortEvent(column: string) {
     if (this.columnSorted != column) {
       this.columnSorted = column;

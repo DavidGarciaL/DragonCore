@@ -4,6 +4,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { RoutingModule } from './app.routing';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { LoadingBarHttpClientModule } from '@ngx-loading-bar/http-client';
+
 
 
 // Components
@@ -43,7 +45,8 @@ import { AlertService } from './services/alert.service';
     FontAwesomeModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    LoadingBarHttpClientModule
   ],
   providers: [CommonService, UserService, RoleService, TeamService, AlertService, EventService],
   bootstrap: [AppComponent]
