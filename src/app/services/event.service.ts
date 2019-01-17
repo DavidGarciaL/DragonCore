@@ -6,6 +6,7 @@ export class EventService {
   search: EventEmitter<string> = new EventEmitter();
   backButton: EventEmitter<any> = new EventEmitter();
   saveButton: EventEmitter<any> = new EventEmitter();
+  loading: EventEmitter<boolean> = new EventEmitter();
   constructor() {}
 
   // Nav Config
@@ -42,5 +43,13 @@ export class EventService {
 
   getSaveButtonEmitter() {
     return this.saveButton;
+  }
+
+  emitLoading(load) {
+    this.loading.emit(load);
+  }
+
+  getLoading() {
+    return this.loading;
   }
 }

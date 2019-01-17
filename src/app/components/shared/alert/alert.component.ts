@@ -1,6 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Alert, AlertType } from 'src/app/models/alert';
 import { AlertService } from 'src/app/services/alert.service';
+import { faTimes } from '@fortawesome/free-solid-svg-icons';
+
 
 @Component({
   selector: 'app-alert',
@@ -14,6 +16,9 @@ export class AlertComponent implements OnInit {
   message: string;
   css = 'alert hide bg-success text-white';
 
+  // Icons
+  faTimes = faTimes;
+
   constructor(private alertService: AlertService) { }
 
   ngOnInit() {
@@ -24,7 +29,23 @@ export class AlertComponent implements OnInit {
         return;
       }
       this.message = alert.message;
-      this.css = 'alert show bg-success text-white';
+      switch (alert.type) {
+        case AlertType.Success:
+          this.css = 'alert show bg-success text-white';
+          break;
+        case AlertType.Error:
+          this.css = 'alert show bg-danger text-white';
+          break;
+        case AlertType.Info:
+          this.css = 'alert show bg-info text-white';    
+          break;
+        case AlertType.Warning:
+          this.css = 'alert show bg-warning text-white';
+          break;
+        default:
+          break;
+      }
+
       setTimeout(() => {
         this.css = 'alert hide bg-success text-white';
       }, 3000);
@@ -33,7 +54,7 @@ export class AlertComponent implements OnInit {
     });
   }
 
-  removeAlert(alert: Alert) {
-    this.alerts = this.alerts.filter(x => x !== alert);
+  close() {
+    this.css = 'alert hide bg-success text-white';
   }
 }

@@ -5,6 +5,7 @@ import { Columns } from 'src/app/config/columns';
 import { EventService } from 'src/app/services/event.service';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
+import { AlertService } from 'src/app/services/alert.service';
 
 @Component({
   selector: 'app-users',
@@ -25,13 +26,24 @@ export class UsersComponent implements OnInit, OnDestroy {
 
   constructor(private _userService: UserService,
               private _eventService: EventService,
-              private _router: Router) { }
+              private _router: Router,
+              private _alertService: AlertService) { }
   
   ngOnInit() {
+    this._eventService.emitLoading(true);
     this._eventService.emitNavConfig(this.navConfig);
-    this._userService.get()
-      .subscribe((data: any) => this.users = data);
+
+    this.getData();
+    
     this.columns = Columns.user;
+  }
+  
+  getData() {
+    this._userService.get()
+      .subscribe((data: any) => {
+        this.users = data;
+        this._eventService.emitLoading(false);
+      });
   }
 
   add() {
@@ -39,11 +51,15 @@ export class UsersComponent implements OnInit, OnDestroy {
   }
 
   edit(id) {
-    console.log(id);
+    this._router.navigate(['user-detail', id]);
   }
 
   remove(id) {
-    console.log(id);
+    this._userService.delete(id)
+      .subscribe(() => {
+        this.getData();
+        this._alertService.success('User succsessfully deleted');
+      })
   }
 
   ngOnDestroy() {

@@ -9,5 +9,6 @@ export const LAYOUT_ROUTES: Routes = [
     { path: 'dashboard', component: DashboardComponent},
     { path: 'users', component: UsersComponent },
     { path: 'user-detail', component: UserDetailComponent },
+    { path: 'user-detail/:id', component: UserDetailComponent },
     { path: '**', component: DashboardComponent }
 ];

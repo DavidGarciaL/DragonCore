@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, OnDestroy, Output, EventEmitter } from '@angular/core';
-import { faPen, faTrash, faCaretUp, faCaretDown, faPlus } from '@fortawesome/free-solid-svg-icons';
+import { faPen, faTrash, faCaretUp, faCaretDown, faPlus, faSpinner } from '@fortawesome/free-solid-svg-icons';
 import { EventService } from 'src/app/services/event.service';
 
 
@@ -20,16 +20,23 @@ export class GridComponent implements OnInit, OnDestroy {
   textSearch: string;
   subscriptions: any[] = [];
   flagFilter: boolean = false;
+  loading = true;
 
   // Icons
   faPen = faPen;
   faTrash = faTrash;
   faPlus = faPlus;
   faSort = faCaretUp;
+  faSpinner = faSpinner;
 
   constructor(private _eventService: EventService) { }
 
-  ngOnInit() { 
+  ngOnInit() {
+    this.subscriptions.push(
+      this._eventService.getLoading()
+        .subscribe((load: boolean) => this.loading = load)
+    );
+
     this.subscriptions.push(
       this._eventService.getSearchEmitter()
         .subscribe(textSearch => {

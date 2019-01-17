@@ -21,4 +21,12 @@ export class CommonService {
   public create(data) {
     return this._http.post(`${API.URL.PROD}/${this.name}`, data);
   }
+
+  public update(id, data) {
+    return this._http.put(`${API.URL.PROD}/${this.name}/${id}`, data);
+  }
+
+  public delete(id) {
+    return this._http.delete(`${API.URL.PROD}/${this.name}/${id}`);
+  }
 }

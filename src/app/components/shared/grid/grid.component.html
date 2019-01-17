@@ -10,7 +10,9 @@
   <tbody>
     <tr class="bg-light" *ngIf="data.length != 0">
       <td *ngFor="let item of columns"></td>
-      <td class="py-sm-2 text-center"><fa-icon [icon]="faPlus" class="text-info cursor-pointer" (click)="add()"></fa-icon></td>
+      <td class="py-sm-2 text-center">
+        <fa-icon [icon]="faPlus" class="text-info cursor-pointer" (click)="add()"></fa-icon>
+      </td>
     </tr>
     <tr *ngFor="let item of data">
       <td *ngFor="let column of columns">{{ item[column.code] }}</td>
@@ -21,3 +23,15 @@
     </tr>
   </tbody>
 </table>
+
+<div class="text-center my-5 py-5" *ngIf="loading">
+  <p>
+    <fa-icon [icon]="faSpinner" [spin]="true" size="3x"></fa-icon>
+  </p>
+</div>
+
+<div class="text-center my-5 py-5" *ngIf="!loading && data.length == 0">
+  <p>
+    No data to display
+  </p>
+</div>
