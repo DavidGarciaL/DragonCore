@@ -35,3 +35,13 @@
     No data to display
   </p>
 </div>
+
+<div class="row">
+  <div class="col-12 text-center">
+      <ul class="pagination justify-content-center">
+        <li class="page-item" [ngClass]="{'active': pageNumber == page.pageNumber}" *ngFor="let page of pagination">
+          <a class="page-link" (click)="changePage(page.pageNumber)">{{ page.pageNumber }}</a>
+        </li>
+      </ul>
+  </div>
+</div>

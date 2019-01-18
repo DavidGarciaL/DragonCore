@@ -15,8 +15,13 @@ import { AlertService } from 'src/app/services/alert.service';
 export class UsersComponent implements OnInit, OnDestroy {
   title = 'Users';
   users: IUser[] = [];
+  usersAux: IUser[] = [];
   columns: any;
   subscriptions: any[] = [];
+  pages: any[] = [];
+  currentPage: number = 1;
+  currentUserCount: number;
+  currentUsers: IUser[] = [];
 
   // Nav Config
   navConfig = {
@@ -34,6 +39,7 @@ export class UsersComponent implements OnInit, OnDestroy {
     this._eventService.emitNavConfig(this.navConfig);
 
     this.getData();
+    this.search();
     
     this.columns = Columns.user;
   }
@@ -42,15 +48,10 @@ export class UsersComponent implements OnInit, OnDestroy {
     this._userService.get()
       .subscribe((data: any) => {
         this.users = data;
-        let numItems = 2;
-            let page = 3;
-            let start = (page * numItems) - numItems;
-            let limit = page * numItems;
-            let flag: any[] = [];
-            for (let i = start; i < limit; i++) {
-              flag.push(this.users[i]);
-            }
-            this.users = flag;
+        this.usersAux = this.users;
+        this.currentUsers = this.users;
+        this.currentUserCount = this.users.length;
+        this.paging(1);
         this._eventService.emitLoading(false);
       });
   }
@@ -63,12 +64,67 @@ export class UsersComponent implements OnInit, OnDestroy {
     this._router.navigate(['user-detail', id]);
   }
 
+  search() {
+    this.subscriptions.push(
+      this._eventService.getSearchEmitter()
+        .subscribe(textSearch => {
+          this.users = this.usersAux;
+          this.users = this.users.filter((f) => {
+            for (const column of this.columns) {
+              if (String(f[column.code]).includes(textSearch)) {
+                return f;
+              }
+            }
+          });
+          this.currentUserCount = this.users.length;
+          this.currentUsers = this.users;
+          this.paging(1);
+        })
+    );
+  }
+
   remove(id) {
     this._userService.delete(id)
       .subscribe(() => {
         this.getData();
         this._alertService.success('User succsessfully deleted');
       })
+  }
+
+  paging(pageNumber) {
+    this.currentPage = pageNumber;
+    this.pages = [];
+    let numItems = 5;
+    let page = pageNumber;
+    let start = (page * numItems) - numItems;
+    let limit = page * numItems;
+    let filter: any[] = [];
+    let pages: number;
+
+    for (let i = start; i < limit; i++) {
+      if (i < this.currentUserCount) {
+        filter.push(this.currentUsers[i]);
+      }
+    }
+
+      pages = this.residuo(numItems);
+
+    for (let i = 0; i < pages; i++) {
+      this.pages.push({pageNumber: (i+1)});
+    }
+
+    this.users = filter;
+  }
+
+  residuo(numItems: number): number {
+    let pages = this.currentUserCount/numItems;
+    let pagesCast = pages.toString();
+    let pageSplit = pagesCast.split('.');
+    pages = Number(pageSplit[0]);
+    if (pagesCast.includes('.')) {
+      pages++;
+    }
+    return pages;
   }
 
   ngOnDestroy() {

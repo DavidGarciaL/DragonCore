@@ -11,13 +11,15 @@ import { EventService } from 'src/app/services/event.service';
 export class GridComponent implements OnInit, OnDestroy {
   @Input() columns: any;
   @Input() data: any[];
+  @Input() pagination: any[];
+  @Input() pageNumber: number;
   @Output() addEmitter = new EventEmitter();
   @Output() editEmitter = new EventEmitter();
   @Output() removeEmitter = new EventEmitter();
+  @Output() changePageEmitter = new EventEmitter();
   columnSorted: string = '';
   row: boolean;
   dataAux: any;
-  dataToShow: any;
   textSearch: string;
   subscriptions: any[] = [];
   flagFilter: boolean = false;
@@ -38,21 +40,21 @@ export class GridComponent implements OnInit, OnDestroy {
         .subscribe((load: boolean) => this.loading = load)
     );
 
-    this.subscriptions.push(
-      this._eventService.getSearchEmitter()
-        .subscribe(textSearch => {
-          ((!this.flagFilter)?this.dataAux=this.data:this.data=this.dataAux);
-          this.flagFilter = true;
-          this.textSearch = textSearch;
-          this.data = this.data.filter((f) => {
-            for (const column of this.columns) {
-              if (String(f[column.code]).includes(this.textSearch)) {
-                return f;
-              }
-            }
-          });
-        })
-    );
+    // this.subscriptions.push(
+    //   this._eventService.getSearchEmitter()
+    //     .subscribe(textSearch => {
+    //       ((!this.flagFilter)?this.dataAux=this.data:this.data=this.dataAux);
+    //       this.flagFilter = true;
+    //       this.textSearch = textSearch;
+    //       this.data = this.data.filter((f) => {
+    //         for (const column of this.columns) {
+    //           if (String(f[column.code]).includes(this.textSearch)) {
+    //             return f;
+    //           }
+    //         }
+    //       });
+    //     })
+    // );
   }
 
      
@@ -93,6 +95,10 @@ export class GridComponent implements OnInit, OnDestroy {
 
   remove(id) {
     this.removeEmitter.emit(id);
+  }
+
+  changePage(pageNumber) {
+    this.changePageEmitter.emit(pageNumber);
   }
 
   ngOnDestroy() {
