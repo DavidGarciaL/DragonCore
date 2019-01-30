@@ -1,0 +1,21 @@
+<form #submit class="animated fadeIn" novalidate [formGroup]="form" (ngSubmit)="onSubmit()">
+  <div class="form-row">
+    <div class="col-md-12">
+      <div class="form-row">
+        <div class="col-12">
+          <h5 class="font-weight-light">
+            Role info
+          </h5>
+          <hr class="mt-2">
+        </div>
+        <div class="col-6 mb-3">
+          <label for="validationServer01">Role name</label>
+          <input id="first" type="text" class="form-control" [ngClass]="{'is-invalid': f.name.errors?.required && f.name.touched}" formControlName="name">
+          <div class="invalid-feedback">
+            Please provice a role name
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>

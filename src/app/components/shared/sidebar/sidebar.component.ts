@@ -19,12 +19,20 @@ export class SidebarComponent implements OnInit {
       route: false,
       submenu: [
         {
-          title: 'Users',
-          route: 'users',
+          title: 'Goals',
+          route: 'goals'
         },
         {
-          title: 'Tarifas',
-          router: 'tarifas'
+          title: 'Goals type',
+          route: 'goalsType'
+        },
+        {
+          title: 'Roles',
+          route: 'roles'
+        },
+        {
+          title: 'Users',
+          route: 'users',
         }
       ]
     }

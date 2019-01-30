@@ -26,6 +26,13 @@ import { EventService } from './services/event.service';
 import { RoleService } from './services/role.service';
 import { TeamService } from './services/team.service';
 import { AlertService } from './services/alert.service';
+import { RolesComponent } from './components/catalogs/roles/roles.component';
+import { RoleDetailComponent } from './components/catalogs/roles/role-detail/role-detail.component';
+import { GoalsComponent } from './components/catalogs/goals/goals.component';
+import { GoalDetailComponent } from './components/catalogs/goals/goal-detail/goal-detail.component';
+import { GoalTypesComponent } from './components/catalogs/goal-types/goal-types.component';
+import { GoalTypeDetailComponent } from './components/catalogs/goal-types/goal-type-detail/goal-type-detail.component';
+import { GoalTypesService } from './services/goal-types.service';
 
 @NgModule({
   declarations: [
@@ -37,7 +44,13 @@ import { AlertService } from './services/alert.service';
     DashboardComponent,
     GridComponent,
     UserDetailComponent,
-    AlertComponent
+    AlertComponent,
+    RolesComponent,
+    RoleDetailComponent,
+    GoalsComponent,
+    GoalDetailComponent,
+    GoalTypesComponent,
+    GoalTypeDetailComponent,
   ],
   imports: [
     BrowserModule,
@@ -48,7 +61,7 @@ import { AlertService } from './services/alert.service';
     ReactiveFormsModule,
     LoadingBarHttpClientModule
   ],
-  providers: [CommonService, UserService, RoleService, TeamService, AlertService, EventService],
+  providers: [CommonService, UserService, RoleService, TeamService, GoalTypesService, AlertService, EventService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

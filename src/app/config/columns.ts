@@ -17,4 +17,15 @@ export class Columns {
             code: 'email'
         }
     ]
+
+    static role = [
+        {
+            title: 'Id',
+            code: 'id'
+        },
+        {
+            title: 'Name',
+            code: 'name'
+        }
+    ]
 }

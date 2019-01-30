@@ -1,92 +1,91 @@
-import { Component, OnInit, Output, EventEmitter, OnDestroy } from '@angular/core';
-import { UserService } from 'src/app/services/user.service';
-import { IUser } from 'src/app/models/iuser';
-import { Columns } from 'src/app/config/columns';
+import { Component, OnInit } from '@angular/core';
+import { IGoalType, GoalType } from 'src/app/models/igoal-type';
+import { GoalTypesService } from 'src/app/services/goal-types.service';
 import { EventService } from 'src/app/services/event.service';
 import { Router } from '@angular/router';
-import { Observable } from 'rxjs';
 import { AlertService } from 'src/app/services/alert.service';
+import { Columns } from 'src/app/config/columns';
 
 @Component({
-  selector: 'app-users',
-  templateUrl: './users.component.html',
-  styleUrls: ['./users.component.css']
+  selector: 'app-goal-types',
+  templateUrl: './goal-types.component.html',
+  styleUrls: ['./goal-types.component.css']
 })
-export class UsersComponent implements OnInit, OnDestroy {
-  users: IUser[] = [];
-  usersAux: IUser[] = [];
+export class GoalTypesComponent implements OnInit {
+  goalTypes: IGoalType[] = [];
+  goalTypesAux: GoalType[] = [];
   columns: any;
   subscriptions: any[] = [];
   pages: any[] = [];
   currentPage: number = 1;
-  currentUserCount: number;
-  currentUsers: IUser[] = [];
+  currentGoalTypeCount: number;
+  currentGoalTypes: IGoalType[] = [];
 
   // Nav Config
   navConfig = {
-    title: 'Users',
+    title: 'Goal types',
     showSearch: true
   }
 
-  constructor(private _userService: UserService,
-              private _eventService: EventService,
-              private _router: Router,
-              private _alertService: AlertService) { }
-  
+  constructor(private _goalTypesService: GoalTypesService,
+    private _eventService: EventService,
+    private _router: Router,
+    private _alertService: AlertService) { }
+
   ngOnInit() {
     this._eventService.emitLoading(true);
     this._eventService.emitNavConfig(this.navConfig);
 
     this.getData();
     this.search();
-    
+
     this.columns = Columns.user;
   }
-  
+
   getData() {
-    this._userService.get()
+    this._goalTypesService.get()
       .subscribe((data: any) => {
-        this.users = data;
-        this.usersAux = this.users;
-        this.currentUsers = this.users;
-        this.currentUserCount = this.users.length;
+        this.goalTypes = data;
+        this.goalTypesAux = this.goalTypes;
+        this.currentGoalTypes = this.goalTypes;
+        this.currentGoalTypeCount = this.goalTypes.length;
         this.paging(1);
         this._eventService.emitLoading(false);
       });
   }
 
   add() {
-    this._router.navigate(['user-detail']);
+    this._router.navigate(['goalType-detail']);
   }
 
   edit(id) {
-    this._router.navigate(['user-detail', id]);
+    this._router.navigate(['goalType-detail', id]);
   }
 
   search() {
     this.subscriptions.push(
       this._eventService.getSearchEmitter()
         .subscribe(textSearch => {
-          this.users = this.usersAux;
-          this.users = this.users.filter((f) => {
+          this.goalTypes = this.goalTypesAux;
+          this.goalTypes = this.goalTypes.filter((f) => {
             for (const column of this.columns) {
               if (String(f[column.code]).includes(textSearch)) {
                 return f;
               }
             }
           });
-          this.currentUserCount = this.users.length;
-          this.currentUsers = this.users;
+          this.currentGoalTypeCount = this.goalTypes.length;
+          this.currentGoalTypes = this.goalTypes;
           this.paging(1);
         })
     );
   }
 
   remove(id) {
-    this._userService.delete(id)
+    this._goalTypesService.delete(id)
       .subscribe(() => {
         this.getData();
-        this._alertService.success('User succsessfully deleted');
+        this._alertService.success('Goal type succsessfully deleted');
       })
   }
 
@@ -101,22 +100,22 @@ export class UsersComponent implements OnInit, OnDestroy {
     let pages: number;
 
     for (let i = start; i < limit; i++) {
-      if (i < this.currentUserCount) {
-        filter.push(this.currentUsers[i]);
+      if (i < this.currentGoalTypeCount) {
+        filter.push(this.currentGoalTypes[i]);
       }
     }
 
-      pages = this.residuo(numItems);
+    pages = this.residuo(numItems);
 
     for (let i = 0; i < pages; i++) {
-      this.pages.push({pageNumber: (i+1)});
+      this.pages.push({ pageNumber: (i + 1) });
     }
 
-    this.users = filter;
+    this.goalTypes = filter;
   }
 
   residuo(numItems: number): number {
-    let pages = this.currentUserCount/numItems;
+    let pages = this.currentGoalTypeCount / numItems;
     let pagesCast = pages.toString();
     let pageSplit = pagesCast.split('.');
     pages = Number(pageSplit[0]);
@@ -127,6 +126,6 @@ export class UsersComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this._eventService.emitNavConfig({ });
+    this._eventService.emitNavConfig({});
   }
 }
