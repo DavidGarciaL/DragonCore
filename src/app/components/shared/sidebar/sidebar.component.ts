@@ -23,8 +23,8 @@ export class SidebarComponent implements OnInit {
           route: 'goals'
         },
         {
-          title: 'Goals type',
-          route: 'goalsType'
+          title: 'Goal types',
+          route: 'goalTypes'
         },
         {
           title: 'Roles',

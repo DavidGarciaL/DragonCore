@@ -22,7 +22,7 @@ export const LAYOUT_ROUTES: Routes = [
     { path: 'goals', component: GoalsComponent },
     { path: 'goal-detail', component: GoalDetailComponent },
     { path: 'goal-detail/:id', component: GoalDetailComponent },
-    { path: 'goalsType', component: GoalTypesComponent },
+    { path: 'goalTypes', component: GoalTypesComponent },
     { path: 'goalType-detail', component: GoalTypeDetailComponent },
     { path: 'goalType-detail/:id', component: GoalTypeDetailComponent },
     { path: '**', component: DashboardComponent }

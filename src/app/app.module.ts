@@ -33,6 +33,7 @@ import { GoalDetailComponent } from './components/catalogs/goals/goal-detail/goa
 import { GoalTypesComponent } from './components/catalogs/goal-types/goal-types.component';
 import { GoalTypeDetailComponent } from './components/catalogs/goal-types/goal-type-detail/goal-type-detail.component';
 import { GoalTypesService } from './services/goal-types.service';
+import { GoalService } from './services/goal.service';
 
 @NgModule({
   declarations: [
@@ -61,7 +62,7 @@ import { GoalTypesService } from './services/goal-types.service';
     ReactiveFormsModule,
     LoadingBarHttpClientModule
   ],
-  providers: [CommonService, UserService, RoleService, TeamService, GoalTypesService, AlertService, EventService],
+  providers: [CommonService, UserService, RoleService, TeamService, GoalService, GoalTypesService, AlertService, EventService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

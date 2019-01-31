@@ -1,3 +1,1 @@
-<p>
-  goals works!
-</p>
+<app-grid [columns]="columns" [data]="goals" [pagination]="pages" [pageNumber]="currentPage" (addEmitter)="add()" (editEmitter)="edit($event)" (removeEmitter)="remove($event)" (changePageEmitter)="paging($event)"></app-grid>

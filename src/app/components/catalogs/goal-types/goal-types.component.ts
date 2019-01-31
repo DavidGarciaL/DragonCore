@@ -39,7 +39,7 @@ export class GoalTypesComponent implements OnInit {
     this.getData();
     this.search();
 
-    this.columns = Columns.user;
+    this.columns = Columns.goalType;
   }
 
   getData() {

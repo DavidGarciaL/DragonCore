@@ -1,3 +1,39 @@
-<p>
-  goal-detail works!
-</p>
+<form #submit class="animated fadeIn" novalidate [formGroup]="form" (ngSubmit)="onSubmit()">
+  <div class="form-row">
+    <div class="col-md-12">
+      <div class="form-row">
+        <div class="col-12">
+          <h5 class="font-weight-light">
+            Goal info
+          </h5>
+          <hr class="mt-2">
+        </div>
+        <div class="col-md-4 mb-3">
+          <label for="validationServer06">Goal type</label>
+          <select id="first" class="custom-select control" [ngClass]="{'is-invalid': f.goalTypeId.errors?.required && f.goalTypeId.touched}" formControlName="goalTypeId">
+            <option *ngFor="let goalType of goalTypes" [ngValue]="goalType.id">{{ goalType.name }}</option>
+          </select>
+          <div class="invalid-feedback">
+            Please choose a goal type
+          </div>
+        </div>
+        <div class="col-4 mb-3">
+          <label for="validationServer02">Goal name</label>
+          <input type="text" class="form-control" [ngClass]="{'is-invalid': f.name.errors?.required && f.name.touched}" formControlName="name">
+          <div class="invalid-feedback">
+            Please provide a goal name
+          </div>
+        </div>
+        <div class="col-md-4 mb-3">
+          <label for="validationServer06">User</label>
+          <select class="custom-select control" [ngClass]="{'is-invalid': f.user.errors?.required && f.user.touched}" formControlName="user">
+            <option *ngFor="let user of users" [ngValue]="user.id">{{ user.name }}</option>
+          </select>
+          <div class="invalid-feedback">
+            Please choose a user
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>

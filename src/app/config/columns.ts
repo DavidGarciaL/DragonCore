@@ -28,4 +28,26 @@ export class Columns {
             code: 'name'
         }
     ]
+
+    static goalType = [
+        {
+            title: 'Id',
+            code: 'id'
+        },
+        {
+            title: 'Name',
+            code: 'name'
+        }
+    ]
+
+    static goal = [
+        {
+            title: 'Id',
+            code: 'id'
+        },
+        {
+            title: 'Name',
+            code: 'name'
+        }
+    ]
 }

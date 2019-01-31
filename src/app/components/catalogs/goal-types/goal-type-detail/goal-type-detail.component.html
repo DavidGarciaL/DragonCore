@@ -1,3 +1,63 @@
-<p>
-  goal-type-detail works!
-</p>
+<form #submit class="animated fadeIn" novalidate [formGroup]="form" (ngSubmit)="onSubmit()">
+  <div class="form-row">
+    <div class="col-md-12">
+      <div class="form-row">
+        <div class="col-12">
+          <h5 class="font-weight-light">
+            Goal type info
+          </h5>
+          <hr class="mt-2">
+        </div>
+        <div class="col-4 mb-3">
+          <label for="validationServer01">Goal type name</label>
+          <input id="first" type="text" class="form-control" [ngClass]="{'is-invalid': f.name.errors?.required && f.name.touched}"
+            formControlName="name">
+          <div class="invalid-feedback">
+            Please provide a goal type name
+          </div>
+        </div>
+        <div class="col-4 mb-3">
+          <label for="validationServer02">Default target</label>
+          <input type="text" class="form-control" [ngClass]="{'is-invalid': f.defaultTarget.errors?.required && f.defaultTarget.touched}"
+            formControlName="defaultTarget">
+          <div class="invalid-feedback">
+            Please provide a default target
+          </div>
+        </div>
+        <div class="col-4 mb-3">
+          <label for="validationServer02">Agregation</label>
+          <input type="text" class="form-control" [ngClass]="{'is-invalid': f.agregation.errors?.required && f.agregation.touched}"
+            formControlName="agregation">
+          <div class="invalid-feedback">
+            Please provide a agregation
+          </div>
+        </div>
+        <div class="col-12 my-3">
+          <div class="form-check mt-1">
+            <input class="form-check-input" type="checkbox" value="" id="defaultCheck1" formControlName="condition"
+              (click)="clickCondition()">
+            <label class="form-check-label" for="defaultCheck1">
+              Condition
+            </label>
+          </div>
+        </div>
+        <div class="col-4 mb-3 animated fadeIn fast" *ngIf="f['condition'].value">
+          <label for="validationServer02">Field condition</label>
+          <input type="text" class="form-control" [ngClass]="{'is-invalid': f.fieldCondition.errors?.required && f.fieldCondition.touched}"
+            formControlName="fieldCondition">
+          <div class="invalid-feedback">
+            Please provide a fieldCondition
+          </div>
+        </div>
+        <div class="col-4 mb-3 animated fadeIn fast" *ngIf="f['condition'].value">
+          <label for="validationServer02">Value condition</label>
+          <input type="text" class="form-control" [ngClass]="{'is-invalid': f.valueCondition.errors?.required && f.valueCondition.touched}"
+            formControlName="valueCondition">
+          <div class="invalid-feedback">
+            Please provide a value condition
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
