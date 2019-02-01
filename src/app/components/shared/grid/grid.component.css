@@ -15,4 +15,5 @@
 .active > a {
     background: #f96816;
     border-color: #f96816;
+    color: white;
 }

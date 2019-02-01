@@ -1,0 +1,30 @@
+<form #submit class="animated fadeIn" novalidate [formGroup]="form" (ngSubmit)="onSubmit()">
+  <div class="form-row">
+    <div class="col-md-12">
+      <div class="form-row">
+        <div class="col-12">
+          <h5 class="font-weight-light">
+            Team info
+          </h5>
+          <hr class="mt-2">
+        </div>
+        <div class="col-6 mb-3">
+          <label for="validationServer02">Team name</label>
+          <input id="first" type="text" class="form-control" [ngClass]="{'is-invalid': f.name.errors?.required && f.name.touched}" formControlName="name">
+          <div class="invalid-feedback">
+            Please provide a team name
+          </div>
+        </div>
+        <div class="col-md-6 mb-3">
+          <label for="validationServer06">Team leader</label>
+          <select class="custom-select control" [ngClass]="{'is-invalid': f.teamLeader.errors?.required && f.teamLeader.touched}" formControlName="teamLeader">
+            <option *ngFor="let teamLeader of teamLeaders" [ngValue]="teamLeader.id">{{ teamLeader.name }}</option>
+          </select>
+          <div class="invalid-feedback">
+            Please choose a team leader
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>

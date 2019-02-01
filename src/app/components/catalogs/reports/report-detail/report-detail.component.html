@@ -1,0 +1,35 @@
+<form #submit class="animated fadeIn" novalidate [formGroup]="form" (ngSubmit)="onSubmit()">
+  <div class="form-row">
+    <div class="col-md-12">
+      <div class="form-row">
+        <div class="col-12">
+          <h5 class="font-weight-light">
+            Report info
+          </h5>
+          <hr class="mt-2">
+        </div>
+        <div class="col-4 mb-3">
+          <label for="validationServer01">Schemas</label>
+          <input id="first" type="text" class="form-control" [ngClass]="{'is-invalid': f.schemas.errors?.required && f.schemas.touched}" formControlName="schemas">
+          <div class="invalid-feedback">
+            Please provide a schema
+          </div>
+        </div>
+        <div class="col-4 mb-3">
+          <label for="validationServer02">Fields</label>
+          <input type="text" class="form-control" [ngClass]="{'is-invalid': f.fields.errors?.required && f.fields.touched}" formControlName="fields">
+          <div class="invalid-feedback">
+            Please provide a field
+          </div>
+        </div>
+        <div class="col-4 mb-3">
+          <label for="validationServer03">Filters</label>
+          <input type="text" class="form-control" [ngClass]="{'is-invalid': f.filters.errors?.required && f.filters.touched}" formControlName="filters">
+          <div class="invalid-feedback">
+            Please provide a filter
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>

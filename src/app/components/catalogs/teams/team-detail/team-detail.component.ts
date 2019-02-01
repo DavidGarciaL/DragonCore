@@ -1,44 +1,39 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { IUser } from 'src/app/models/iuser';
-import { IGoalType } from 'src/app/models/igoal-type';
-import { IGoal, Goal } from 'src/app/models/igoal';
-import { GoalTypesService } from 'src/app/services/goal-types.service';
+import { ITeam, Team } from 'src/app/models/iteam';
+import { TeamService } from 'src/app/services/team.service';
 import { UserService } from 'src/app/services/user.service';
-import { GoalService } from 'src/app/services/goal.service';
 import { EventService } from 'src/app/services/event.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AlertService } from 'src/app/services/alert.service';
 
 @Component({
-  selector: 'app-goal-detail',
-  templateUrl: './goal-detail.component.html',
-  styleUrls: ['./goal-detail.component.css']
+  selector: 'app-team-detail',
+  templateUrl: './team-detail.component.html',
+  styleUrls: ['./team-detail.component.css']
 })
-export class GoalDetailComponent implements OnInit, OnDestroy {
+export class TeamDetailComponent implements OnInit {
   form: FormGroup;
   subscriptions = [];
   id: number;
   isAdd = true;
-  goalTypes: IGoalType[];
-  users: IUser[];
-  goal: IGoal = {
+  teamLeaders: IUser[];
+  team: ITeam = {
     id: null,
-    goalTypeId: null,
     name: null,
-    user: null
+    teamLeader: null
   };
 
   // Nav Config
   navConfig = {
-    title: "Goal detail",
+    title: "Team detail",
     showBackButton: true,
     showSaveButton: true
   }
 
-  constructor(private _userService: UserService,
-    private _goalTypesService: GoalTypesService,
-    private _goalService: GoalService,
+  constructor(private _teamService: TeamService,
+    private _userService: UserService,
     private _eventService: EventService,
     private _formBuilder: FormBuilder,
     private _router: Router,
@@ -57,10 +52,10 @@ export class GoalDetailComponent implements OnInit, OnDestroy {
     this.buildForm();
 
     if (!this.isAdd) {
-      this._goalService.getById(this.id)
-        .subscribe((goal: IGoal) => {
-          this.goal = goal;
-          this.form.patchValue(this.goal);
+      this._teamService.getById(this.id)
+        .subscribe((team: ITeam) => {
+          this.team = team;
+          this.form.patchValue(this.team);
         })
     }
   }
@@ -83,38 +78,32 @@ export class GoalDetailComponent implements OnInit, OnDestroy {
   }
 
   getDataForSelectBox() {
-    this._goalService.get()
-      .subscribe((success: any) => this.goal = success);
 
     this._userService.get()
-      .subscribe((success: any) => this.users = success);
-
-    this._goalTypesService.get()
-      .subscribe((success: any) => this.goalTypes = success);
+      .subscribe((success: any) => this.teamLeaders = success);
   }
 
   buildForm() {
     this.form = this._formBuilder.group({
-      goalTypeId: [this.goal.goalTypeId, Validators.required],
-      name: [this.goal.name, Validators.required],
-      user: [this.goal.user, Validators.required]
+      name: [this.team.name, Validators.required],
+      teamLeader: [this.team.teamLeader, Validators.required],
     });
   }
 
   onSubmit() {
     if (this.form.valid) {
-      this.goal = new Goal(this.id, this.form.value);
+      this.team = new Team(this.id, this.form.value);
       if (this.isAdd) {
-        this._goalService.create(this.goal)
+        this._teamService.create(this.team)
           .subscribe(() => {
-            this._router.navigate(['goals']);
-            this._alertService.success('Goal successfully added');
+            this._router.navigate(['teams']);
+            this._alertService.success('Team successfully added');
           });
       } else {
-        this._goalService.update(this.id, this.goal)
+        this._teamService.update(this.id, this.team)
           .subscribe(() => {
-            this._router.navigate(['goals']);
-            this._alertService.success('Goal successfully upgraded');
+            this._router.navigate(['teams']);
+            this._alertService.success('Team successfully upgraded');
           });
       }
     } else {
@@ -125,7 +114,7 @@ export class GoalDetailComponent implements OnInit, OnDestroy {
   get f() { return this.form.controls; }
 
   back() {
-    this._router.navigate(['goals']);
+    this._router.navigate(['teams']);
   }
 
   ngOnDestroy() {

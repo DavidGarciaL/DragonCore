@@ -50,4 +50,30 @@ export class Columns {
             code: 'name'
         }
     ]
+
+    static report = [
+        {
+            title: 'Id',
+            code: 'id'
+        },
+        {
+            title: 'Schemas',
+            code: 'schemas'
+        },
+        {
+            title: 'Fields',
+            code: 'fields'
+        }
+    ]
+
+    static team = [
+        {
+            title: 'Id',
+            code: 'id'
+        },
+        {
+            title: 'Name',
+            code: 'name'
+        }
+    ]
 }

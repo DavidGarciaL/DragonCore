@@ -34,6 +34,11 @@ import { GoalTypesComponent } from './components/catalogs/goal-types/goal-types.
 import { GoalTypeDetailComponent } from './components/catalogs/goal-types/goal-type-detail/goal-type-detail.component';
 import { GoalTypesService } from './services/goal-types.service';
 import { GoalService } from './services/goal.service';
+import { ReportsComponent } from './components/catalogs/reports/reports.component';
+import { ReportDetailComponent } from './components/catalogs/reports/report-detail/report-detail.component';
+import { ReportService } from './services/report.service';
+import { TeamsComponent } from './components/catalogs/teams/teams.component';
+import { TeamDetailComponent } from './components/catalogs/teams/team-detail/team-detail.component';
 
 @NgModule({
   declarations: [
@@ -52,6 +57,10 @@ import { GoalService } from './services/goal.service';
     GoalDetailComponent,
     GoalTypesComponent,
     GoalTypeDetailComponent,
+    ReportsComponent,
+    ReportDetailComponent,
+    TeamsComponent,
+    TeamDetailComponent,
   ],
   imports: [
     BrowserModule,
@@ -62,7 +71,7 @@ import { GoalService } from './services/goal.service';
     ReactiveFormsModule,
     LoadingBarHttpClientModule
   ],
-  providers: [CommonService, UserService, RoleService, TeamService, GoalService, GoalTypesService, AlertService, EventService],
+  providers: [CommonService, UserService, RoleService, TeamService, GoalService, GoalTypesService, ReportService, AlertService, EventService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
