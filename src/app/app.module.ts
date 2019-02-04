@@ -39,6 +39,12 @@ import { ReportDetailComponent } from './components/catalogs/reports/report-deta
 import { ReportService } from './services/report.service';
 import { TeamsComponent } from './components/catalogs/teams/teams.component';
 import { TeamDetailComponent } from './components/catalogs/teams/team-detail/team-detail.component';
+import { IncentivePlanComponent } from './components/catalogs/incentive-plan/incentive-plan.component';
+import { IncentivePlanDetailComponent } from './components/catalogs/incentive-plan/incentive-plan-detail/incentive-plan-detail.component';
+import { IncentiveRulesComponent } from './components/catalogs/incentive-rules/incentive-rules.component';
+import { IncentiveRuleDetailComponent } from './components/catalogs/incentive-rules/incentive-rule-detail/incentive-rule-detail.component';
+import { IncentivePlanService } from './services/incentive-plan.service';
+import { IncentiveRuleService } from './services/incentive-rule.service';
 
 @NgModule({
   declarations: [
@@ -61,6 +67,10 @@ import { TeamDetailComponent } from './components/catalogs/teams/team-detail/tea
     ReportDetailComponent,
     TeamsComponent,
     TeamDetailComponent,
+    IncentivePlanComponent,
+    IncentivePlanDetailComponent,
+    IncentiveRulesComponent,
+    IncentiveRuleDetailComponent,
   ],
   imports: [
     BrowserModule,
@@ -71,7 +81,19 @@ import { TeamDetailComponent } from './components/catalogs/teams/team-detail/tea
     ReactiveFormsModule,
     LoadingBarHttpClientModule
   ],
-  providers: [CommonService, UserService, RoleService, TeamService, GoalService, GoalTypesService, ReportService, AlertService, EventService],
+  providers: [
+    CommonService, 
+    UserService, 
+    RoleService, 
+    TeamService, 
+    GoalService, 
+    GoalTypesService, 
+    ReportService, 
+    IncentivePlanService, 
+    IncentiveRuleService, 
+    AlertService, 
+    EventService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

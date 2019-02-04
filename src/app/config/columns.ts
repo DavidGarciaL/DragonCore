@@ -76,4 +76,26 @@ export class Columns {
             code: 'name'
         }
     ]
+
+    static incentivePlan = [
+        {
+            title: 'Id',
+            code: 'id'
+        },
+        {
+            title: 'Name',
+            code: 'name'
+        }
+    ]
+
+    static incentiveRule = [
+        {
+            title: 'Id',
+            code: 'id'
+        },
+        {
+            title: 'Name',
+            code: 'name'
+        }
+    ]
 }

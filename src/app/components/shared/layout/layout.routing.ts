@@ -14,6 +14,10 @@ import { ReportsComponent } from '../../catalogs/reports/reports.component';
 import { ReportDetailComponent } from '../../catalogs/reports/report-detail/report-detail.component';
 import { TeamsComponent } from '../../catalogs/teams/teams.component';
 import { TeamDetailComponent } from '../../catalogs/teams/team-detail/team-detail.component';
+import { IncentivePlanComponent } from '../../catalogs/incentive-plan/incentive-plan.component';
+import { IncentivePlanDetailComponent } from '../../catalogs/incentive-plan/incentive-plan-detail/incentive-plan-detail.component';
+import { IncentiveRulesComponent } from '../../catalogs/incentive-rules/incentive-rules.component';
+import { IncentiveRuleDetailComponent } from '../../catalogs/incentive-rules/incentive-rule-detail/incentive-rule-detail.component';
 
 export const LAYOUT_ROUTES: Routes = [
     { path: 'dashboard', component: DashboardComponent},
@@ -35,5 +39,11 @@ export const LAYOUT_ROUTES: Routes = [
     { path: 'teams', component: TeamsComponent },
     { path: 'team-detail', component: TeamDetailComponent },
     { path: 'team-detail/:id', component: TeamDetailComponent },
+    { path: 'incentivePlans', component: IncentivePlanComponent },
+    { path: 'incentivePlan-detail', component: IncentivePlanDetailComponent },
+    { path: 'incentivePlan-detail/:id', component: IncentivePlanDetailComponent },
+    { path: 'incentiveRules', component: IncentiveRulesComponent },
+    { path: 'incentiveRule-detail', component: IncentiveRuleDetailComponent },
+    { path: 'incentiveRule-detail/:id', component: IncentiveRuleDetailComponent },
     { path: '**', component: DashboardComponent }
 ];
