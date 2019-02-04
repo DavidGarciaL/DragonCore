@@ -2,7 +2,7 @@
   <!-- Sidebar -->
   <nav id="sidebar" [ngClass]="{'active': active}">
     <div class="sidebar-header">
-      <h3>Dragoncore</h3>
+      <h3>Dragoncore <img src="assets/img/logo-white.png" height="25px" alt="Dragoncore"></h3>
     </div>
     <ul class="list-unstyled components">
       <p>Dummy Heading</p>
@@ -11,10 +11,10 @@
           <a [routerLink]="['/' + item.route]">{{ item.title }}</a>
         </ng-container>
         <ng-template #elseSubmenu>
-          <a [href]="'#' + item.route + 'Submenu'" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+          <a [href]="'#' + item.tag + 'Submenu'" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
             {{ item.title }}
           </a>
-          <ul [id]="item.route + 'Submenu'" class="collapse list-unstyled">
+          <ul [id]="item.tag + 'Submenu'" class="collapse list-unstyled">
             <li *ngFor="let subitem of item.submenu" routerLinkActive="active">
               <a [routerLink]="['/' + subitem.route]">{{ subitem.title }}</a>
             </li>

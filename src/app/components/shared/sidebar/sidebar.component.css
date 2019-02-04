@@ -95,3 +95,7 @@ a.article:hover {
     background: #181818 !important;
     color: #fff !important;
 }
+
+nav {
+    overflow: scroll;
+}

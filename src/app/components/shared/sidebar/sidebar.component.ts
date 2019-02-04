@@ -17,6 +17,7 @@ export class SidebarComponent implements OnInit {
     {
       title: 'Catalogs',
       route: false,
+      tag: 'catalog',
       submenu: [
         {
           title: 'Goals',
