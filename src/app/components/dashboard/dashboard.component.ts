@@ -10,7 +10,8 @@ export class DashboardComponent implements OnInit {
   // Nav Config
   navConfig = {
     title: 'Global Dashboard',
-    showSearch: true
+    showSearch: true,
+    dashboard: true
   }
 
   constructor(private _eventService: EventService) { }

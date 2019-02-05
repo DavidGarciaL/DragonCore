@@ -1,3 +1,40 @@
-<p>
-  incentive-rule-detail works!
-</p>
+<form #submit class="animated fadeIn" novalidate [formGroup]="form" (ngSubmit)="onSubmit()">
+  <div class="form-row">
+    <div class="col-md-12">
+      <div class="form-row">
+        <div class="col-12">
+          <h5 class="font-weight-light">
+            Incentive rule info
+          </h5>
+          <hr class="mt-2">
+        </div>
+        <div class="col-4 mb-3">
+          <label for="validationServer02">Name</label>
+          <input id="first" type="text" class="form-control" [ngClass]="{'is-invalid': f.name.errors?.required && f.name.touched}"
+            formControlName="name">
+          <div class="invalid-feedback">
+            Please provide a incentive rule name
+          </div>
+        </div>
+        <div class="col-4 mb-3">
+          <label for="validationServer02">Condition</label>
+          <input type="text" class="form-control" [ngClass]="{'is-invalid': f.condition.errors?.required && f.condition.touched}"
+            formControlName="condition">
+          <div class="invalid-feedback">
+            Please provide a condition
+          </div>
+        </div>
+        <div class="col-md-4 mb-3">
+          <label for="validationServer06">Incentive plan</label>
+          <select class="custom-select control" [ngClass]="{'is-invalid': f.incentivePlanId.errors?.required && f.incentivePlanId.touched}"
+            formControlName="incentivePlanId">
+            <option *ngFor="let incentivePlan of incentivePlans" [ngValue]="incentivePlan.id">{{ incentivePlan.name }}</option>
+          </select>
+          <div class="invalid-feedback">
+            Please choose a incentive plan
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>

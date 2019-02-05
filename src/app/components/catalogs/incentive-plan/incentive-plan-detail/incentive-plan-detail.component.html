@@ -1,3 +1,53 @@
-<p>
-  incentive-plan-detail works!
-</p>
+<form #submit class="animated fadeIn" novalidate [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="form-row">
+      <div class="col-md-12">
+        <div class="form-row">
+          <div class="col-12">
+            <h5 class="font-weight-light">
+              Incentive plan info
+            </h5>
+            <hr class="mt-2">
+          </div>
+          <div class="col-4 mb-3">
+            <label for="validationServer02">Incentive plan name</label>
+            <input id="first" type="text" class="form-control" [ngClass]="{'is-invalid': f.name.errors?.required && f.name.touched}" formControlName="name">
+            <div class="invalid-feedback">
+              Please provide a plan name
+            </div>
+          </div>
+          <div class="col-md-4 mb-3">
+            <label for="validationServer08">Start date</label>
+            <input type="date" class="form-control"  [ngClass]="{'is-invalid': f.startDate.errors?.required && f.startDate.touched}" formControlName="startDate">
+            <div class="invalid-feedback">
+              Please provide start date
+            </div>
+          </div>
+          <div class="col-md-4 mb-3">
+            <label for="validationServer08">End date</label>
+            <input type="date" class="form-control"  [ngClass]="{'is-invalid': f.endDate.errors?.required && f.endDate.touched}" formControlName="endDate">
+            <div class="invalid-feedback">
+              Please provide end date
+            </div>
+          </div>
+          <div class="col-md-4 mb-3">
+            <label for="validationServer06">By</label>
+            <select (change)="onChange($event.srcElement.value)" class="custom-select control" [ngClass]="{'is-invalid': f.by.errors?.required && f.by.touched}" formControlName="by">
+              <option value="1">User</option>
+              <option value="2">Role</option>
+              <option value="3">Team</option>
+            </select>
+            <div class="invalid-feedback">
+              Please choose an option
+            </div>
+          </div>
+          <div class="col-4 mb-3">
+            <label for="validationServer02">Destination</label>
+            <input type="text" class="form-control" [ngClass]="{'is-invalid': f.destination.errors?.required && f.destination.touched}" formControlName="destination">
+            <div class="invalid-feedback">
+              Please provide a destination
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>

@@ -1,5 +1,5 @@
 import { Component, OnInit, Output, EventEmitter, HostListener, OnChanges, Input, OnDestroy } from '@angular/core';
-import { faAlignJustify, faArrowLeft } from '@fortawesome/free-solid-svg-icons';
+import { faAlignJustify, faArrowLeft, faDollarSign } from '@fortawesome/free-solid-svg-icons';
 import { EventService } from 'src/app/services/event.service';
 
 
@@ -26,12 +26,14 @@ export class NavbarComponent implements OnInit, OnDestroy {
     title: '',
     showSearch: false,
     showBackButton: false,
-    showSaveButton: false    
+    showSaveButton: false,
+    dashboard: false  
   }
 
   // Icons
   faAlignJustify = faAlignJustify;
   faArrowLeft = faArrowLeft;
+  faDollarSign = faDollarSign;
 
   constructor(private _eventService: EventService) { }
 

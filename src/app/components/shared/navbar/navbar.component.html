@@ -12,10 +12,48 @@
       <ul class="navbar-nav mr-auto">
       </ul>
       <form class="form-inline my-2 my-lg-0 animated fadeIn" *ngIf="navConfig.showSearch">
-        <input class="form-control mr-sm-2 animated fadeIn" type="search" placeholder="Search" aria-label="Search" *ngIf="navConfig.showSearch" (keyup)="search(text)" #text>
+        <input class="form-control mr-sm-2 animated fadeIn" type="search" placeholder="Search" aria-label="Search"
+          *ngIf="navConfig.showSearch" (keyup)="search(text)" #text>
       </form>
-      </div>
-      <button type="button" class="btn btn-red ml-2 animated fadeIn" *ngIf="navConfig.showBackButton" (click)="back()"><fa-icon [icon]="faArrowLeft"></fa-icon></button>
+    </div>
+    <button type="button" class="btn btn-red ml-2 animated fadeIn" *ngIf="navConfig.showBackButton" (click)="back()">
+      <fa-icon [icon]="faArrowLeft"></fa-icon>
+    </button>
     <button type="button" class="btn btn-yellow ml-2 animated fadeIn" *ngIf="navConfig.showSaveButton" (click)="save()">Save</button>
   </nav>
 </div>
+<!-- <div class="container bg-primary" *ngIf="navConfig.dashboard"> -->
+  <div class="row" *ngIf="navConfig.dashboard">
+    <div class="col-md-3">
+      <div class="card">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-md-9">
+              <h6 class="cart-text text-success">Earnings</h6>
+              <h5 class="card-title">{{ 40000 | currency:'USD':true:'.0' }}</h5>
+            </div>
+            <div class="col-md-3">
+              <fa-icon [icon]="faDollarSign" size="3x" style="color: gainsboro"></fa-icon>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3 bg-info" style="height: 25px;">
+      <!-- <div style="width: 90%; margin: auto; height: 100%;" class="bg-dark"></div> -->
+    </div>
+    <div class="col-md-3 bg-success" style="height: 25px;">
+      <!-- <div style="width: 90%; margin: auto; height: 100%;" class="bg-dark"></div> -->
+    </div>
+    <div class="col-md-3 bg-orange" style="height: 25px;">
+        <!-- <div style="width: 90%; float: right; height: 100%;" class="bg-dark"></div> -->
+    </div>
+  </div>
+<!-- </div> -->
+    
+<!-- 
+  - Total ganancia
+  - Comisiones pagadas
+  - Comisiones por pagar
+  - Comisiones pronosticadas
+ -->
